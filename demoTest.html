@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mini vue</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{title}}</h2>
+      <input :name="name" />
+      <h1>{{name}}</h1>
+      <button @click="btnClick">click me</button>
+    </div>
+  </body>
+  <script src="./observer.js"></script>
+  <script src="./watcher.js"></script>
+  <script src="./compile.js"></script>
+  <script src="./index.js"></script>
+  <script type="text/javascript">
+    var miniVue = new MiniVue({
+      el: '#app',
+      data: {
+        title: 'hello world',
+        name: ''
+      },
+      methods: {
+        // 暂时 未实现箭头函数中直接使用this -> function 箭头函数
+        btnClick() {
+          this.name = 'init data'
+          alert('inner methods & event is done')
+        }
+      }
+    })
+
+    window.setTimeout(function() {
+      miniVue.title = 'setTimeout'
+    }, 2000)
+
+    window.setTimeout(function() {
+      miniVue.name = 'canchange'
+    }, 2500)
+  </script>
+</html>
